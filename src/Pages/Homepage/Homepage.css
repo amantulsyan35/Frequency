@@ -1,0 +1,58 @@
+.Homepage-container {
+  height: 100%;
+}
+
+.Homepage-category-container {
+  border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  padding: 0.5rem;
+}
+
+.Homepage-categories {
+  color: rgb(0, 0, 0, 0.7);
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  width: auto;
+  cursor: pointer;
+  border-radius: 2rem;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.Homepage-categories:hover {
+  color: var(--info-icon-color);
+}
+
+.All {
+  color: var(--info-icon-color);
+}
+
+.Homepage-carousel {
+  height: auto;
+  margin: 2rem 2rem;
+}
+
+.Homepage-featured-container {
+  border: 1px solid rgb(0, 0, 0, 0.1);
+  height: auto;
+  margin: 2rem 2rem;
+  padding: 1rem;
+}
+
+.Homepage-featured-container h1 {
+  color: rgb(0, 0, 0, 0.6);
+  letter-spacing: 0.3;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.Homepage-card-container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}

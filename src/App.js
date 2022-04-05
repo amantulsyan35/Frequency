@@ -1,9 +1,14 @@
 import './App.css';
 
+import { Navbar } from './components';
+
+import FrequencyRoute from './routes/FrequencyRoute';
+
 function App() {
   return (
-    <div className='App'>
-      <h1>hifrbfri</h1>
+    <div>
+      <Navbar />
+      <FrequencyRoute />
     </div>
   );
 }

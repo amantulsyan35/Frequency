@@ -1,0 +1,64 @@
+.Sidebar {
+  height: 100vh;
+  border-right: 1px solid rgb(0, 0, 0, 0.1);
+  width: 17rem;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  left: -100%;
+  transition: 350ms;
+}
+
+.active-sidebar {
+  height: 100vh;
+  border-right: 1px solid rgb(0, 0, 0, 0.1);
+  width: 17rem;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  transition: 350ms;
+}
+
+.Sidebar-list {
+  height: auto;
+  padding: 0;
+  width: 100%;
+}
+
+.Sidebar-row {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.Sidebar-row a {
+  color: rgb(0, 0, 0, 0.7);
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+  margin-bottom: 2rem;
+  border-top: 1px solid rgb(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+}
+
+.Sidebar-row a:hover {
+  border: 1px solid var(--info-icon-color);
+  border-right: 0;
+  border-left: 0;
+  color: var(--info-icon-color);
+}
+
+.Home-row a {
+  border-top: none;
+  color: var(--info-icon-color);
+}
+
+.Home-row a:hover {
+  border: none;
+  color: var(--info-icon-color);
+  border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+}
