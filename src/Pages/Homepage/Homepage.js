@@ -19,6 +19,7 @@ const Homepage = () => {
   const { categories, setCategories } = useCategory();
   const [selectedCategory, setSelectedCategory] = useState('All');
 
+  //FOR FETHCING VIDEOS
   useEffect(() => {
     try {
       async function fetchVideos() {
@@ -43,6 +44,7 @@ const Homepage = () => {
     }
   }, [videos]);
 
+  // FOR FETCHING CATEGORIES
   useEffect(() => {
     async function fetchCategories() {
       const response = await axios.get('/api/categories');
