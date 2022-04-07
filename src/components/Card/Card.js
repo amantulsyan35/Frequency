@@ -2,27 +2,28 @@ import { FaHistory, FaIndent } from 'react-icons/fa';
 
 import './Card.css';
 
-export const FeatureCard = () => {
+export const FeatureCard = ({
+  videoThumbnail,
+  videoTitle,
+  creatorImage,
+  creator,
+  published,
+  views,
+}) => {
   return (
     <div className='Featured-card'>
       <div className='Featured-image'>
-        <img
-          src='https://uploads-ssl.webflow.com/5dd81a71f9d4123047878254/5f172f91110104022a42cc27_maxresdefault69.jpg'
-          alt=''
-        />
+        <img src={videoThumbnail} alt={videoTitle} />
       </div>
       <div className='Featured-card-body'>
         <div className='Featured-card-avatar'>
-          <img
-            src='https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'
-            alt='avatar'
-          />
+          <img src={creatorImage} alt={creator} />
         </div>
         <div className='Featured-card-details'>
-          <h4>Can Knowledge Drive You Crazy?</h4>
-          <p className='Featured-card-details-category'>Pursuit of Wonder</p>
+          <h4>{videoTitle}</h4>
+          <p className='Featured-card-details-category'>{creator}</p>
           <span>
-            <p>280 views</p> <p>1 month ago</p>
+            <p>{views} views</p> <p>{published}</p>
           </span>
         </div>
         <div className='Featured-card-icon'>
