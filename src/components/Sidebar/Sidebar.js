@@ -10,11 +10,11 @@ const Sidebar = () => {
   const { sideBarState } = useSideBar();
 
   return (
-    <div className={sideBarState.showSideBar ? 'active-sidebar' : 'Sidebar'}>
-      <ul className='Sidebar-list'>
+    <div className={sideBarState.showSideBar ? 'active-sidebar' : 'sidebar'}>
+      <ul className='sidebar-list'>
         {SidebarData.map((val, key) => {
           return (
-            <li className={`Sidebar-row ${val.cName}`} key={key}>
+            <li className={`sidebar-row ${val.cName}`} key={key}>
               <Link to={val.link}>
                 {val.icon}
                 <span>{val.title}</span>

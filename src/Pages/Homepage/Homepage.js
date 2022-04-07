@@ -1,14 +1,10 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
 import { AiTwotonePushpin } from 'react-icons/ai';
 import './Homepage.css';
-
 import { CarouselComponent, FeatureCard } from '../../components';
-
 import { useVideo } from '../../context/video-context';
 import { useCategory } from '../../context/category-context';
-
 import { categoryVideos } from '../../utils/videoUtils';
 
 const Homepage = () => {
@@ -34,7 +30,7 @@ const Homepage = () => {
           );
         }
         videoDispatch({
-          type: 'GET_VIDEOS',
+          type: 'SET_VIDEOS',
           payload: filteredVideos,
         });
       }
@@ -67,7 +63,7 @@ const Homepage = () => {
               key={i}
               onClick={() => setSelectedCategory(cat.categoryName)}
             >
-              <div>{cat.categoryName}</div>
+              <p>{cat.categoryName}</p>
               <AiTwotonePushpin />
             </div>
           );

@@ -164,7 +164,7 @@ export const videos = [
     description: 'This is the story of how Next.js took over the world.',
     videoCreator: 'uidotdev',
     videoThumbnail:
-      'https://i.ytimg.com/an_webp/BILxV_vrZO0/mqdefault_6s.webp?du=3000&sqp=CJuHupIG&rs=AOn4CLAsij9ojkSChvNBlUeWbbiwO2wFjA',
+      'https://i.ytimg.com/an_webp/BILxV_vrZO0/mqdefault_6s.webp?du=3000&sqp=CM-zu5IG&rs=AOn4CLBUI6WXbvbTmKyFrW6xCN3R0MbOfw',
     videoURL: 'https://youtu.be/BILxV_vrZO0',
     videoViews: '69,417',
     videoPublished: 'Mar 28, 2022',
@@ -193,7 +193,7 @@ export const videos = [
     description: 'I WROTE A BOOK OF ESSAYS! It’s available for pre-order now:',
     videoCreator: 'Nerdwriter1',
     videoThumbnail:
-      'https://i.ytimg.com/an_webp/EbthMC6spAE/mqdefault_6s.webp?du=3000&sqp=CMznuZIG&rs=AOn4CLAPEmbmggr7pGEgl0IpGUtzmd_FUg',
+      'https://i.ytimg.com/an_webp/EbthMC6spAE/mqdefault_6s.webp?du=3000&sqp=CI-vu5IG&rs=AOn4CLBVh76hjRPuFupPmyCSbd5u6YeAfw',
     videoURL: 'https://youtu.be/EbthMC6spAE',
     videoViews: '1,918,248',
     videoPublished: 'Sep 14, 2017',
@@ -207,7 +207,7 @@ export const videos = [
     description: 'I WROTE A BOOK OF ESSAYS! It’s available for pre-order now:',
     videoCreator: 'Nerdwriter1',
     videoThumbnail:
-      'https://i.ytimg.com/an_webp/_FJtaBg25xI/mqdefault_6s.webp?du=3000&sqp=CPLsuZIG&rs=AOn4CLDRj4r2aUzGJprzGRNEGNm3b7GJiA',
+      'https://i.ytimg.com/an_webp/_FJtaBg25xI/mqdefault_6s.webp?du=3000&sqp=CPb9upIG&rs=AOn4CLClBhBHUWIkajAxSHv_Ga8lBEy2kg',
     videoURL: 'https://youtu.be/_FJtaBg25xI',
     videoViews: '196,879',
     videoPublished: 'Nov 30, 2021',

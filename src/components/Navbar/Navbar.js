@@ -49,11 +49,11 @@ const Navbar = () => {
   const { sideBarState, sideBarDispatch } = useSideBar();
 
   let navigate = useNavigate();
-  const encodedToken = window.localStorage.getItem('encodedToken');
+  const encodedToken = localStorage.getItem('encodedToken');
 
   const handleLogout = () => {
     try {
-      window.localStorage.clear();
+      localStorage.clear();
       navigate('/signup');
     } catch (error) {
       console.log(error);

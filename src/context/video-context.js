@@ -5,7 +5,7 @@ const VideoContext = createContext();
 const VideoProvider = ({ children }) => {
   const reducerFunc = (state, action) => {
     switch (action.type) {
-      case 'GET_VIDEOS':
+      case 'SET_VIDEOS':
         return { ...state, videos: action.payload };
       default:
         return state;

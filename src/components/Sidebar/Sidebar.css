@@ -1,4 +1,4 @@
-.Sidebar {
+.sidebar {
   height: 100vh;
   border-right: 1px solid rgb(0, 0, 0, 0.1);
   width: 17rem;
@@ -20,20 +20,20 @@
   transition: 350ms;
 }
 
-.Sidebar-list {
+.sidebar-list {
   height: auto;
   padding: 0;
   width: 100%;
 }
 
-.Sidebar-row {
+.sidebar-row {
   width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 
-.Sidebar-row a {
+.sidebar-row a {
   color: rgb(0, 0, 0, 0.7);
   display: flex;
   gap: 1rem;
@@ -45,7 +45,7 @@
   border-bottom: 1px solid rgb(0, 0, 0, 0.1);
 }
 
-.Sidebar-row a:hover {
+.sidebar-row a:hover {
   border: 1px solid var(--info-icon-color);
   border-right: 0;
   border-left: 0;
