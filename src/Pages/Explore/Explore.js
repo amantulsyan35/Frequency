@@ -1,17 +1,13 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
-import './Homepage.css';
-import {
-  CarouselComponent,
-  FeatureCard,
-  CategoryComponent,
-} from '../../components';
 import { useVideo } from '../../context/video-context';
 import { useCategory } from '../../context/category-context';
 import { categoryVideos } from '../../utils/videoUtils';
+import { CategoryComponent } from '../../components';
+import { ExploreCard } from '../../components';
+import './Explore.css';
 
-const Homepage = () => {
+const Explore = () => {
   const {
     videoState: { videos },
     videoDispatch,
@@ -19,7 +15,7 @@ const Homepage = () => {
   const { categories, setCategories } = useCategory();
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-  //FOR FETHCING VIDEOS
+  // FOR FETCHING VIDEOS
   useEffect(() => {
     try {
       async function fetchVideos() {
@@ -54,8 +50,8 @@ const Homepage = () => {
   }, []);
 
   return (
-    <main className='Homepage-container'>
-      <section className='Homepage-category-container'>
+    <main className='Explore-container'>
+      <section className='Explore-category-container'>
         {[{ categoryName: 'All' }, ...categories].map((cat, i) => {
           return (
             <CategoryComponent
@@ -71,31 +67,23 @@ const Homepage = () => {
           );
         })}
       </section>
-
-      <section className='Homepage-carousel'>
-        <CarouselComponent />
-      </section>
-
-      <section className='Homepage-featured-container'>
-        <h1>FEATURED VIDEOS</h1>
-        <div className='Homepage-card-container'>
-          {videos.map((vid) => {
-            return (
-              <FeatureCard
-                key={vid._id}
-                videoThumbnail={vid.videoThumbnail}
-                videoTitle={vid.videoTitle}
-                creatorImage={vid.videoCreatorImage}
-                creator={vid.videoCreator}
-                published={vid.videoPublished}
-                views={vid.videoViews}
-              />
-            );
-          })}
-        </div>
+      <section className='Explore-video-container'>
+        {videos.map((vid) => {
+          return (
+            <ExploreCard
+              key={vid._id}
+              videoThumbnail={vid.videoThumbnail}
+              videoTitle={vid.videoTitle}
+              creator={vid.videoCreator}
+              published={vid.videoPublished}
+              views={vid.videoViews}
+              desc={vid.description}
+            />
+          );
+        })}
       </section>
     </main>
   );
 };
 
-export default Homepage;
+export default Explore;

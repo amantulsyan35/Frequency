@@ -52,13 +52,17 @@
   color: var(--info-icon-color);
 }
 
-.Home-row a {
-  border-top: none;
+.selected-page a {
+  /* border-top: none; */
   color: var(--info-icon-color);
 }
 
-.Home-row a:hover {
-  border: none;
+.selected-page a:hover {
+  /* border: none; */
   color: var(--info-icon-color);
-  border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+  /* border-bottom: 1px solid rgb(0, 0, 0, 0.1); */
+}
+
+.Home-row a {
+  border-top: none;
 }

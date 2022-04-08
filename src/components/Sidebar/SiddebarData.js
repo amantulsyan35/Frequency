@@ -17,7 +17,7 @@ export const SidebarData = [
   {
     title: 'Explore',
     icon: <FaCompass />,
-    link: '',
+    link: '/explore',
     cName: 'Explore-row',
   },
   {

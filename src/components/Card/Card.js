@@ -41,3 +41,38 @@ export const FeatureCard = ({
     </div>
   );
 };
+
+export const ExploreCard = ({
+  videoThumbnail,
+  videoTitle,
+  creator,
+  views,
+  published,
+  desc,
+}) => {
+  return (
+    <div className='Explore-card'>
+      <div className='Explore-image'>
+        <img src={videoThumbnail} alt={videoTitle} />
+      </div>
+      <div className='Explore-card-body'>
+        <h2>{videoTitle}</h2>
+        <div className='Explore-card-details'>
+          <p>
+            <b>{creator}</b>
+          </p>
+          <p>
+            <b>{views} views</b>
+          </p>
+          <p>
+            <b>{published}</b>
+          </p>
+        </div>
+        <p className='Explore-card-desc'>{desc}</p>
+      </div>
+      <div className='Explore-card-icons'>
+        <FaHistory size={22} />
+      </div>
+    </div>
+  );
+};

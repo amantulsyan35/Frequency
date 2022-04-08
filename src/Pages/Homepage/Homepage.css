@@ -10,27 +10,6 @@
   padding: 0.5rem;
 }
 
-.Homepage-categories {
-  color: rgb(0, 0, 0, 0.7);
-  padding: 0.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  width: auto;
-  cursor: pointer;
-  border-radius: 2rem;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
-}
-
-.Homepage-categories:hover {
-  color: var(--info-icon-color);
-}
-
-.selected-category {
-  color: var(--info-icon-color);
-}
-
 .Homepage-carousel {
   height: auto;
   margin: 2rem 2rem;

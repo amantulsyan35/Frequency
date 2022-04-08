@@ -85,3 +85,44 @@
 .Featured-card:hover > .Featured-card-footer {
   opacity: 1;
 }
+
+/* EXPLORE CARD  */
+
+.Explore-card {
+  display: flex;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  cursor: pointer;
+  border: 1px solid rgb(0, 0, 0, 0.1);
+}
+
+.Explore-image img {
+  height: 100%;
+  width: 100%;
+}
+
+.Explore-card-body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.5rem;
+  padding: 0.3rem;
+}
+
+.Explore-card-body h2 {
+  color: rgb(0, 0, 0, 0.6);
+}
+
+.Explore-card-details {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.Explore-card-details p {
+  color: rgb(0, 0, 0, 0.6);
+}
+
+.Explore-card-icons {
+  padding: 0.5rem;
+  color: rgb(0, 0, 0, 0.6);
+}
