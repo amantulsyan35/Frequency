@@ -7,12 +7,17 @@ const VideoProvider = ({ children }) => {
     switch (action.type) {
       case 'SET_VIDEOS':
         return { ...state, videos: action.payload };
+      case 'SET_CATEGORY_VIDEOS':
+        return { ...state, categoryVideos: action.payload };
       default:
         return state;
     }
   };
 
-  const [videoState, videoDispatch] = useReducer(reducerFunc, { videos: [] });
+  const [videoState, videoDispatch] = useReducer(reducerFunc, {
+    videos: [],
+    categoryVideos: [],
+  });
 
   return (
     <VideoContext.Provider value={{ videoState, videoDispatch }}>

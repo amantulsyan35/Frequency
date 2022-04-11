@@ -1,23 +1,26 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import { useVideo } from '../../context/video-context';
+import { useSideBar } from '../../context/sidebar-context';
+import { useCategory } from '../../context/category-context';
+import { categoryVideoFilter } from '../../utils/videoUtils';
+import { useNavigate } from 'react-router-dom';
 import './Homepage.css';
 import {
   CarouselComponent,
   FeatureCard,
   CategoryComponent,
 } from '../../components';
-import { useVideo } from '../../context/video-context';
-import { useCategory } from '../../context/category-context';
-import { categoryVideos } from '../../utils/videoUtils';
 
 const Homepage = () => {
   const {
     videoState: { videos },
     videoDispatch,
   } = useVideo();
+  const { sideBarDispatch } = useSideBar();
   const { categories, setCategories } = useCategory();
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const navigate = useNavigate();
 
   //FOR FETHCING VIDEOS
   useEffect(() => {
@@ -28,7 +31,7 @@ const Homepage = () => {
         if (selectedCategory === 'All') {
           filteredVideos = response.data.videos;
         } else {
-          filteredVideos = categoryVideos(
+          filteredVideos = categoryVideoFilter(
             response.data.videos,
             selectedCategory
           );
@@ -52,6 +55,13 @@ const Homepage = () => {
     }
     fetchCategories();
   }, []);
+
+  const handleNavigate = (id) => {
+    navigate(`/video/${id}`);
+    sideBarDispatch({
+      type: 'TOGGLE_SIDEBAR',
+    });
+  };
 
   return (
     <main className='Homepage-container'>
@@ -89,6 +99,7 @@ const Homepage = () => {
                 creator={vid.videoCreator}
                 published={vid.videoPublished}
                 views={vid.videoViews}
+                onClick={() => handleNavigate(vid._id)}
               />
             );
           })}

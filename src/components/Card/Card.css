@@ -93,7 +93,10 @@
   padding: 0.5rem;
   gap: 0.5rem;
   cursor: pointer;
-  border: 1px solid rgb(0, 0, 0, 0.1);
+}
+.Explore-image {
+  height: 10rem;
+  width: 20rem;
 }
 
 .Explore-image img {
@@ -111,6 +114,7 @@
 
 .Explore-card-body h2 {
   color: rgb(0, 0, 0, 0.6);
+  font-weight: 400;
 }
 
 .Explore-card-details {
@@ -125,4 +129,11 @@
 .Explore-card-icons {
   padding: 0.5rem;
   color: rgb(0, 0, 0, 0.6);
+}
+
+.rec-card {
+  height: auto;
+  width: 18rem;
+  cursor: pointer;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
 }

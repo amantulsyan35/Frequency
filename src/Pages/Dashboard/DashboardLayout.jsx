@@ -4,6 +4,7 @@ import { Sidebar } from '../../components';
 import { useSideBar } from '../../context/sidebar-context';
 import Homepage from '../Homepage';
 import Explore from '../Explore/Explore';
+import VideoPage from '../VideoPage/VideoPage.js';
 
 const DashboardLayout = () => {
   const { sideBarState } = useSideBar();
@@ -20,6 +21,7 @@ const DashboardLayout = () => {
         <Routes>
           <Route exact path='/' element={<Homepage />} />
           <Route exact path='/explore' element={<Explore />} />
+          <Route exact path='/video/:videoId' element={<VideoPage />} />
         </Routes>
       </div>
     </>

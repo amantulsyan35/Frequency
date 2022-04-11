@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { useVideo } from '../../context/video-context';
+import { useSideBar } from '../../context/sidebar-context';
 import { useCategory } from '../../context/category-context';
-import { categoryVideos } from '../../utils/videoUtils';
+import { categoryVideoFilter } from '../../utils/videoUtils';
 import { CategoryComponent } from '../../components';
 import { ExploreCard } from '../../components';
 import './Explore.css';
 
 const Explore = () => {
+  const navigate = useNavigate();
+  const { sideBarDispatch } = useSideBar();
   const {
     videoState: { videos },
     videoDispatch,
@@ -24,7 +28,7 @@ const Explore = () => {
         if (selectedCategory === 'All') {
           filteredVideos = response.data.videos;
         } else {
-          filteredVideos = categoryVideos(
+          filteredVideos = categoryVideoFilter(
             response.data.videos,
             selectedCategory
           );
@@ -48,6 +52,13 @@ const Explore = () => {
     }
     fetchCategories();
   }, []);
+
+  const handleNavigate = (id) => {
+    navigate(`/video/${id}`);
+    sideBarDispatch({
+      type: 'TOGGLE_SIDEBAR',
+    });
+  };
 
   return (
     <main className='Explore-container'>
@@ -78,6 +89,7 @@ const Explore = () => {
               published={vid.videoPublished}
               views={vid.videoViews}
               desc={vid.description}
+              onClick={() => handleNavigate(vid._id)}
             />
           );
         })}
