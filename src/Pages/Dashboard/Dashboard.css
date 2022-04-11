@@ -1,0 +1,15 @@
+.Dashboard-layout {
+  margin-left: 17rem;
+  width: calc(100% -17rem);
+  min-height: 100vh;
+  overflow: auto;
+  transition: 350ms;
+  overflow-x: hidden;
+}
+.Dashboard-layout-full {
+  width: 100%;
+  min-height: 100vh;
+  overflow: auto;
+  transition: 350ms;
+  overflow-x: hidden;
+}
