@@ -1,14 +1,14 @@
 import './App.css';
 
-import { Navbar } from './components';
-
+import { Navbar, Toast } from './components';
 import FrequencyRoute from './routes/FrequencyRoute';
 
 function App() {
   return (
-    <div>
+    <div className='App'>
       <Navbar />
       <FrequencyRoute />
+      <Toast />
     </div>
   );
 }

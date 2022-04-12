@@ -10,6 +10,7 @@ import {
   CarouselComponent,
   FeatureCard,
   CategoryComponent,
+  Spinner,
 } from '../../components';
 
 const Homepage = () => {
@@ -20,6 +21,7 @@ const Homepage = () => {
   const { sideBarDispatch } = useSideBar();
   const { categories, setCategories } = useCategory();
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   //FOR FETHCING VIDEOS
@@ -27,6 +29,7 @@ const Homepage = () => {
     try {
       async function fetchVideos() {
         const response = await axios.get('/api/videos');
+
         let filteredVideos;
         if (selectedCategory === 'All') {
           filteredVideos = response.data.videos;
@@ -54,7 +57,7 @@ const Homepage = () => {
       setCategories(response.data.categories);
     }
     fetchCategories();
-  }, []);
+  }, [categories]);
 
   const handleNavigate = (id) => {
     navigate(`/video/${id}`);
@@ -89,20 +92,24 @@ const Homepage = () => {
       <section className='Homepage-featured-container'>
         <h1>FEATURED VIDEOS</h1>
         <div className='Homepage-card-container'>
-          {videos.map((vid) => {
-            return (
-              <FeatureCard
-                key={vid._id}
-                videoThumbnail={vid.videoThumbnail}
-                videoTitle={vid.videoTitle}
-                creatorImage={vid.videoCreatorImage}
-                creator={vid.videoCreator}
-                published={vid.videoPublished}
-                views={vid.videoViews}
-                onClick={() => handleNavigate(vid._id)}
-              />
-            );
-          })}
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            videos.map((vid) => {
+              return (
+                <FeatureCard
+                  key={vid._id}
+                  videoThumbnail={vid.videoThumbnail}
+                  videoTitle={vid.videoTitle}
+                  creatorImage={vid.videoCreatorImage}
+                  creator={vid.videoCreator}
+                  published={vid.videoPublished}
+                  views={vid.videoViews}
+                  onClick={() => handleNavigate(vid._id)}
+                />
+              );
+            })
+          )}
         </div>
       </section>
     </main>

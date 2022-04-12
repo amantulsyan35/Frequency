@@ -1,4 +1,5 @@
 //External Dependencies
+import { toast } from 'react-toastify';
 import { Link, useNavigate, NavLink } from 'react-router-dom';
 import {
   FaSearch,
@@ -7,6 +8,7 @@ import {
   FaSignInAlt,
   FaBars,
   FaNotEqual,
+  FaSignOutAlt,
 } from 'react-icons/fa';
 
 import { useSideBar } from '../../context/sidebar-context';
@@ -23,7 +25,7 @@ const NavSearch = () => {
   );
 };
 
-const NavList = ({ icon, to }) => {
+const NavList = ({ icon, to, onClick }) => {
   return (
     <li>
       {icon === 'notification' && (
@@ -32,14 +34,17 @@ const NavList = ({ icon, to }) => {
         </NavLink>
       )}
       {icon === 'video' && (
-        <NavLink to={to}>
+        <Link to={to}>
           <FaVideo className='nav-icon' />
-        </NavLink>
+        </Link>
       )}
       {icon === 'signin' && (
-        <NavLink to={to}>
+        <Link to={to}>
           <FaSignInAlt className='nav-icon' />
-        </NavLink>
+        </Link>
+      )}
+      {icon === 'signout' && (
+        <FaSignOutAlt className='nav-icon' onClick={onClick} />
       )}
     </li>
   );
@@ -52,12 +57,9 @@ const Navbar = () => {
   const encodedToken = localStorage.getItem('encodedToken');
 
   const handleLogout = () => {
-    try {
-      localStorage.clear();
-      navigate('/signup');
-    } catch (error) {
-      console.log(error);
-    }
+    localStorage.clear();
+    toast.success('🦄 Successfully Logged Out!');
+    navigate('/user/signup');
   };
 
   return (
@@ -82,15 +84,13 @@ const Navbar = () => {
       <NavSearch />
       <div className='nav-links-container'>
         <ul className='nav-links'>
-          <NavList icon='video' to='user/checkout' />
+          {/*<NavList icon='video' to='user/checkout' />*/}
 
           <NavList icon='notification' to='user/wishlist' />
           {encodedToken ? (
-            <button className='nav-logout' onClick={handleLogout}>
-              Logout
-            </button>
+            <NavList icon='signout' onClick={handleLogout} />
           ) : (
-            <NavList icon='signin' to='user/wishlist' />
+            <NavList icon='signin' to='user/signup' />
           )}
         </ul>
       </div>

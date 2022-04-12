@@ -4,3 +4,7 @@ export { default as CarouselComponent } from './Carousel/Carousel';
 export { FeatureCard, ExploreCard, RecommendationCard } from './Card/Card';
 export { default as CategoryComponent } from './CategoryComponent/CategoryComponent';
 export { default as VideoPlayer } from './VideoPlayer/VideoPlayer';
+export { FormButton } from './Button/Button';
+export { FormInput } from './Input/Input';
+export { default as Toast } from './Toast/Toast';
+export { default as Spinner } from './Spinner/Spinner';
