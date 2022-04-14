@@ -1,10 +1,18 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 import './Dashboard.css';
 import { Sidebar } from '../../components';
 import { useSideBar } from '../../context/sidebar-context';
 import Homepage from '../Homepage';
-import Explore from '../Explore/Explore';
-import VideoPage from '../VideoPage/VideoPage.js';
+import Explore from '../Explore';
+import VideoPage from '../VideoPage';
+import Like from '../Like';
+import WatchLater from '../WatchLater';
+
+const PrivateRoute = () => {
+  const encodedToken = window.localStorage.getItem('encodedToken');
+
+  return encodedToken ? <Outlet /> : <Navigate to='/login' />;
+};
 
 const DashboardLayout = () => {
   const { sideBarState } = useSideBar();
@@ -19,6 +27,10 @@ const DashboardLayout = () => {
         }
       >
         <Routes>
+          <Route exact path='/user' element={<PrivateRoute />}>
+            <Route exact path='/user/like' element={<Like />} />
+            <Route exact path='/user/watchlater' element={<WatchLater />} />
+          </Route>
           <Route exact path='/' element={<Homepage />} />
           <Route exact path='/explore' element={<Explore />} />
           <Route exact path='/video/:videoId' element={<VideoPage />} />

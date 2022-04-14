@@ -9,6 +9,10 @@ const VideoProvider = ({ children }) => {
         return { ...state, videos: action.payload };
       case 'SET_CATEGORY_VIDEOS':
         return { ...state, categoryVideos: action.payload };
+      case 'SET_LIKED_VIDEOS':
+        return { ...state, likedVideos: action.payload };
+      case 'SET_WATCH_LATER_VIDEOS':
+        return { ...state, watchLater: action.payload };
       default:
         return state;
     }
@@ -17,6 +21,8 @@ const VideoProvider = ({ children }) => {
   const [videoState, videoDispatch] = useReducer(reducerFunc, {
     videos: [],
     categoryVideos: [],
+    likedVideos: [],
+    watchLater: [],
   });
 
   return (

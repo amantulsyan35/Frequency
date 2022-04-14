@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { useVideo } from '../../context/video-context';
 import { useSideBar } from '../../context/sidebar-context';
 import { useCategory } from '../../context/category-context';
 import { categoryVideoFilter } from '../../utils/videoUtils';
-import { useNavigate } from 'react-router-dom';
+import { addToWatchLater } from '../../services/video-service';
+import { toast } from 'react-toastify';
 import './Homepage.css';
 import {
   CarouselComponent,
   FeatureCard,
   CategoryComponent,
-  Spinner,
 } from '../../components';
 
 const Homepage = () => {
@@ -21,7 +22,7 @@ const Homepage = () => {
   const { sideBarDispatch } = useSideBar();
   const { categories, setCategories } = useCategory();
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [isLoading, setIsLoading] = useState(false);
+  const encodedToken = localStorage.getItem('encodedToken');
   const navigate = useNavigate();
 
   //FOR FETHCING VIDEOS
@@ -66,6 +67,20 @@ const Homepage = () => {
     });
   };
 
+  const handleWatch = async (e, video) => {
+    try {
+      e.stopPropagation();
+      if (encodedToken) {
+        await addToWatchLater(video);
+        toast.success('saved to watch later');
+      } else {
+        toast.error('You need to be logged in first!');
+      }
+    } catch (error) {
+      toast(error.message);
+    }
+  };
+
   return (
     <main className='Homepage-container'>
       <section className='Homepage-category-container'>
@@ -92,24 +107,21 @@ const Homepage = () => {
       <section className='Homepage-featured-container'>
         <h1>FEATURED VIDEOS</h1>
         <div className='Homepage-card-container'>
-          {isLoading ? (
-            <Spinner />
-          ) : (
-            videos.map((vid) => {
-              return (
-                <FeatureCard
-                  key={vid._id}
-                  videoThumbnail={vid.videoThumbnail}
-                  videoTitle={vid.videoTitle}
-                  creatorImage={vid.videoCreatorImage}
-                  creator={vid.videoCreator}
-                  published={vid.videoPublished}
-                  views={vid.videoViews}
-                  onClick={() => handleNavigate(vid._id)}
-                />
-              );
-            })
-          )}
+          {videos.map((vid) => {
+            return (
+              <FeatureCard
+                key={vid._id}
+                videoThumbnail={vid.videoThumbnail}
+                videoTitle={vid.videoTitle}
+                creatorImage={vid.videoCreatorImage}
+                creator={vid.videoCreator}
+                published={vid.videoPublished}
+                views={vid.videoViews}
+                onClick={() => handleNavigate(vid._id)}
+                handleWatch={(e) => handleWatch(e, vid)}
+              />
+            );
+          })}
         </div>
       </section>
     </main>

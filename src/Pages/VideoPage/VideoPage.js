@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { VideoPlayer, RecommendationCard } from '../../components';
 import { VideoIcon, VideoStats } from './videoComp';
 import { useVideo } from '../../context/video-context';
+import { toast } from 'react-toastify';
+import {
+  addToLikedVideos,
+  deleteLikedVideo,
+} from '../../services/video-service';
 import { categoryVideoFilter } from '../../utils/videoUtils';
 import './VideoPage.css';
 
@@ -14,6 +19,7 @@ const VideoPage = () => {
     videoDispatch,
   } = useVideo();
   const [video, setVideo] = useState({});
+  const [liked, setLiked] = useState(false);
   const params = useParams();
 
   useEffect(() => {
@@ -37,10 +43,31 @@ const VideoPage = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [video, categoryVideos]);
+  }, []);
 
   const handleNavigate = (id) => {
     navigate(`/video/${id}`);
+  };
+
+  const handleLike = async () => {
+    try {
+      setLiked((state) => !state);
+      await addToLikedVideos(video);
+      toast.success('Added to Liked videos');
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const handleRemoveLike = async () => {
+    try {
+      setLiked((state) => !state);
+      videoDispatch({ type: 'LIKED' });
+      await deleteLikedVideo(video._id);
+      toast.success('Removed from Liked videos');
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -56,7 +83,12 @@ const VideoPage = () => {
               <VideoStats title={video.videoPublished} />
             </div>
             <div className='video-icons'>
-              <VideoIcon title='LIKE' iconName='like' />
+              <VideoIcon
+                title={liked ? 'REMOVE LIKED' : 'LIKE'}
+                iconName='like'
+                handleLike={liked ? handleRemoveLike : handleLike}
+                like={liked}
+              />
               <VideoIcon title='SHARE' iconName='share' />
               <VideoIcon title='SAVE' iconName='save' />
             </div>
@@ -68,7 +100,6 @@ const VideoPage = () => {
           </div>
           <div className='video-creator-details'>
             <h4>{video.videoCreator}</h4>
-            <p>310K subscribers </p>
           </div>
           <div className='video-creator-button'>
             <button>Discuss</button>

@@ -5,10 +5,10 @@ import {
   FaSearch,
   FaVideo,
   FaBell,
-  FaSignInAlt,
   FaBars,
   FaNotEqual,
   FaSignOutAlt,
+  FaUserPlus,
 } from 'react-icons/fa';
 
 import { useSideBar } from '../../context/sidebar-context';
@@ -40,7 +40,7 @@ const NavList = ({ icon, to, onClick }) => {
       )}
       {icon === 'signin' && (
         <Link to={to}>
-          <FaSignInAlt className='nav-icon' />
+          <FaUserPlus className='nav-icon' />
         </Link>
       )}
       {icon === 'signout' && (
@@ -90,7 +90,7 @@ const Navbar = () => {
           {encodedToken ? (
             <NavList icon='signout' onClick={handleLogout} />
           ) : (
-            <NavList icon='signin' to='user/signup' />
+            <NavList icon='signin' to='/signup' />
           )}
         </ul>
       </div>

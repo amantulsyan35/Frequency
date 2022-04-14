@@ -23,7 +23,7 @@ export const SidebarData = [
   {
     title: 'Liked',
     icon: <FaThumbsUp />,
-    link: '',
+    link: '/user/like',
     cName: 'Liked-row',
   },
   {
@@ -41,7 +41,7 @@ export const SidebarData = [
   {
     title: 'Watch Later',
     icon: <FaClock />,
-    link: '',
+    link: '/user/watchlater',
     cName: 'Later-row',
   },
 ];

@@ -1,11 +1,13 @@
 import { FaThumbsUp, FaShare, FaIndent, FaCircle } from 'react-icons/fa';
 
-export const VideoIcon = ({ title, iconName }) => {
+export const VideoIcon = ({ title, iconName, handleLike, like }) => {
   return (
     <>
-      <p>
+      <p onClick={handleLike}>
         <span>
-          {iconName === 'like' && <FaThumbsUp />}
+          {iconName === 'like' && (
+            <FaThumbsUp className={like ? 'liked' : ''} />
+          )}
           {iconName === 'share' && <FaShare />}
           {iconName === 'save' && <FaIndent />}
         </span>{' '}

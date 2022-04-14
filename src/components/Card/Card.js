@@ -1,4 +1,5 @@
-import { FaHistory, FaIndent } from 'react-icons/fa';
+import { useState } from 'react';
+import { FaHistory, FaIndent, FaEllipsisV, FaTrashAlt } from 'react-icons/fa';
 
 import './Card.css';
 
@@ -10,7 +11,15 @@ export const FeatureCard = ({
   published,
   views,
   onClick,
+  handleWatch,
 }) => {
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const handleDropdown = (e) => {
+    e.stopPropagation();
+    setShowDropdown((state) => !state);
+  };
+
   return (
     <div className='Featured-card' onClick={onClick}>
       <div className='Featured-image'>
@@ -28,15 +37,21 @@ export const FeatureCard = ({
           </span>
         </div>
         <div className='Featured-card-icon'>
-          <FaHistory size={22} />
+          <FaEllipsisV onClick={(e) => handleDropdown(e)} size={22} />
+          <ul
+            className={showDropdown ? 'feature-dropdown' : 'feature-not-active'}
+          >
+            <li>
+              {' '}
+              <FaIndent />
+              Save to Playlist
+            </li>
+          </ul>
         </div>
       </div>
       <div className='Featured-card-footer'>
-        <button>
+        <button onClick={(e) => handleWatch(e)}>
           <FaHistory /> WATCH LATER
-        </button>
-        <button>
-          <FaIndent /> ADD TO QUEUE
         </button>
       </div>
     </div>
@@ -51,7 +66,16 @@ export const ExploreCard = ({
   published,
   desc,
   onClick,
+  handleLike,
+  type,
+  handleWatchLater,
 }) => {
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const handleDropdown = (e) => {
+    e.stopPropagation();
+    setShowDropdown((state) => !state);
+  };
   return (
     <div className='Explore-card' onClick={onClick}>
       <div className='Explore-image'>
@@ -63,9 +87,11 @@ export const ExploreCard = ({
           <p>
             <b>{creator}</b>
           </p>
-          <p>
-            <b>{views} views</b>
-          </p>
+          {views && (
+            <p>
+              <b>{views} views</b>
+            </p>
+          )}
           <p>
             <b>{published}</b>
           </p>
@@ -73,7 +99,39 @@ export const ExploreCard = ({
         <p className='Explore-card-desc'>{desc}</p>
       </div>
       <div className='Explore-card-icons'>
-        <FaHistory size={22} />
+        <FaEllipsisV onClick={(e) => handleDropdown(e)} size={22} />
+        <ul
+          className={showDropdown ? 'explore-dropdown' : 'explore-not-active'}
+        >
+          {type === 'playlist' && (
+            <li>
+              <FaHistory />
+              Save to Watch later
+            </li>
+          )}
+          <li>
+            {' '}
+            <FaIndent />
+            Save to Playlist
+          </li>
+
+          {
+            <>
+              {type === 'like' && (
+                <li onClick={(e) => handleLike(e)}>
+                  <FaTrashAlt />
+                  Remove from Liked videos
+                </li>
+              )}
+              {type === 'watchlater' && (
+                <li onClick={(e) => handleWatchLater(e)}>
+                  <FaTrashAlt />
+                  Remove from Watch later
+                </li>
+              )}
+            </>
+          }
+        </ul>
       </div>
     </div>
   );
