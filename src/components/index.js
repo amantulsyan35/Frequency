@@ -8,3 +8,4 @@ export { FormButton } from './Button/Button';
 export { FormInput } from './Input/Input';
 export { default as Toast } from './Toast/Toast';
 export { default as Spinner } from './Spinner/Spinner';
+export { default as Modal } from './Modal/Modal';

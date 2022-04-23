@@ -76,6 +76,7 @@ export const ExploreCard = ({
     e.stopPropagation();
     setShowDropdown((state) => !state);
   };
+
   return (
     <div className='Explore-card' onClick={onClick}>
       <div className='Explore-image'>

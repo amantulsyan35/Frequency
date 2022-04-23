@@ -29,7 +29,7 @@ export const SidebarData = [
   {
     title: 'Playlists',
     icon: <FaIndent />,
-    link: '',
+    link: '/user/playlist',
     cName: 'Playlist-row',
   },
   {

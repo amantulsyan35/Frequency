@@ -7,6 +7,7 @@ import Explore from '../Explore';
 import VideoPage from '../VideoPage';
 import Like from '../Like';
 import WatchLater from '../WatchLater';
+import Playlist from '../Playlist';
 
 const PrivateRoute = () => {
   const encodedToken = window.localStorage.getItem('encodedToken');
@@ -30,6 +31,7 @@ const DashboardLayout = () => {
           <Route exact path='/user' element={<PrivateRoute />}>
             <Route exact path='/user/like' element={<Like />} />
             <Route exact path='/user/watchlater' element={<WatchLater />} />
+            <Route exact path='/user/playlist' element={<Playlist />} />
           </Route>
           <Route exact path='/' element={<Homepage />} />
           <Route exact path='/explore' element={<Explore />} />
