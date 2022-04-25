@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useVideo } from '../../context/video-context';
 import { useSideBar } from '../../context/sidebar-context';
 import { useCategory } from '../../context/category-context';
+import { usePlaylist } from '../../context/playlist-context';
 import { categoryVideoFilter } from '../../utils/videoUtils';
 import { addToWatchLater } from '../../services/video-service';
 import { toast } from 'react-toastify';
@@ -12,6 +13,7 @@ import {
   CarouselComponent,
   FeatureCard,
   CategoryComponent,
+  Modal,
 } from '../../components';
 
 const Homepage = () => {
@@ -21,6 +23,10 @@ const Homepage = () => {
   } = useVideo();
   const { sideBarDispatch } = useSideBar();
   const { categories, setCategories } = useCategory();
+  const {
+    playlistState: { togglePlaylist },
+    playlistDispatch,
+  } = usePlaylist();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const encodedToken = localStorage.getItem('encodedToken');
   const navigate = useNavigate();
@@ -81,6 +87,11 @@ const Homepage = () => {
     }
   };
 
+  const handlePlaylist = (e) => {
+    e.stopPropagation();
+    playlistDispatch({ type: 'TOGGLE_PLAYLIST' });
+  };
+
   return (
     <main className='Homepage-container'>
       <section className='Homepage-category-container'>
@@ -107,19 +118,22 @@ const Homepage = () => {
       <section className='Homepage-featured-container'>
         <h1>FEATURED VIDEOS</h1>
         <div className='Homepage-card-container'>
-          {videos.map((vid) => {
+          {videos.map((vid, i) => {
             return (
-              <FeatureCard
-                key={vid._id}
-                videoThumbnail={vid.videoThumbnail}
-                videoTitle={vid.videoTitle}
-                creatorImage={vid.videoCreatorImage}
-                creator={vid.videoCreator}
-                published={vid.videoPublished}
-                views={vid.videoViews}
-                onClick={() => handleNavigate(vid._id)}
-                handleWatch={(e) => handleWatch(e, vid)}
-              />
+              <div key={vid._id}>
+                {togglePlaylist && <Modal video={vid} />}
+                <FeatureCard
+                  videoThumbnail={vid.videoThumbnail}
+                  videoTitle={vid.videoTitle}
+                  creatorImage={vid.videoCreatorImage}
+                  creator={vid.videoCreator}
+                  published={vid.videoPublished}
+                  views={vid.videoViews}
+                  onClick={() => handleNavigate(vid._id)}
+                  handleWatch={(e) => handleWatch(e, vid)}
+                  handlePlaylist={(e) => handlePlaylist(e)}
+                />
+              </div>
             );
           })}
         </div>

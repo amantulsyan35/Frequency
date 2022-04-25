@@ -1,7 +1,7 @@
 import axios from 'axios';
 const encodedToken = localStorage.getItem('encodedToken');
 
-const addToLikedVideos = async (video) => {
+export const addToLikedVideos = async (video) => {
   try {
     const response = await axios({
       method: 'post',
@@ -17,7 +17,7 @@ const addToLikedVideos = async (video) => {
   }
 };
 
-const deleteLikedVideo = async (id) => {
+export const deleteLikedVideo = async (id) => {
   try {
     const response = await axios({
       method: 'delete',
@@ -30,7 +30,7 @@ const deleteLikedVideo = async (id) => {
   }
 };
 
-const getLikedVideos = async () => {
+export const getLikedVideos = async () => {
   try {
     const response = await axios({
       method: 'get',
@@ -43,7 +43,7 @@ const getLikedVideos = async () => {
   }
 };
 
-const getWatchLaterVideos = async () => {
+export const getWatchLaterVideos = async () => {
   try {
     const response = await axios({
       method: 'get',
@@ -56,7 +56,7 @@ const getWatchLaterVideos = async () => {
   }
 };
 
-const addToWatchLater = async (video) => {
+export const addToWatchLater = async (video) => {
   try {
     const response = await axios({
       method: 'post',
@@ -72,7 +72,7 @@ const addToWatchLater = async (video) => {
   }
 };
 
-const deleteWatchLaterVideo = async (id) => {
+export const deleteWatchLaterVideo = async (id) => {
   try {
     const response = await axios({
       method: 'delete',
@@ -85,11 +85,60 @@ const deleteWatchLaterVideo = async (id) => {
   }
 };
 
-export {
-  addToLikedVideos,
-  deleteLikedVideo,
-  getLikedVideos,
-  addToWatchLater,
-  getWatchLaterVideos,
-  deleteWatchLaterVideo,
+export const getAllPlaylists = async () => {
+  try {
+    const response = await axios({
+      method: 'get',
+      url: `/api/user/playlists`,
+      headers: { authorization: encodedToken },
+    });
+    return response && response.data.playlists;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addToPlaylist = async (playlistDet) => {
+  try {
+    const response = await axios({
+      method: 'post',
+      url: '/api/user/playlists',
+      headers: { authorization: encodedToken },
+      data: {
+        playlist: playlistDet,
+      },
+    });
+    return response && response.data.playlists;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getPlaylistVideo = async (id) => {
+  try {
+    const response = await axios({
+      method: 'get',
+      url: `/api/user/playlists/${id}`,
+      headers: { authorization: encodedToken },
+    });
+    return response && response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addVideoToPlaylist = async (id, video) => {
+  try {
+    const response = await axios({
+      method: 'post',
+      url: `/api/user/playlists/${id}`,
+      headers: { authorization: encodedToken },
+      data: {
+        video: video,
+      },
+    });
+    return response && response.data.playlist.videos;
+  } catch (error) {
+    console.log(error);
+  }
 };

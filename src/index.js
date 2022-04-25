@@ -9,6 +9,7 @@ import { SideBarProvider } from './context/sidebar-context';
 import { VideoProvider } from './context/video-context';
 import { CategoryProvider } from './context/category-context';
 import { UserProvider } from './context/user-context';
+import { PlaylistProvider } from './context/playlist-context';
 import { makeServer } from './server';
 
 makeServer();
@@ -16,15 +17,17 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <UserProvider>
-      <SideBarProvider>
-        <VideoProvider>
-          <CategoryProvider>
-            <BrowserRouter>
-              <App />
-            </BrowserRouter>
-          </CategoryProvider>
-        </VideoProvider>
-      </SideBarProvider>
+      <PlaylistProvider>
+        <SideBarProvider>
+          <VideoProvider>
+            <CategoryProvider>
+              <BrowserRouter>
+                <App />
+              </BrowserRouter>
+            </CategoryProvider>
+          </VideoProvider>
+        </SideBarProvider>
+      </PlaylistProvider>
     </UserProvider>
   </React.StrictMode>,
   document.getElementById('root')

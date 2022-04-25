@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { FaHistory, FaIndent, FaEllipsisV, FaTrashAlt } from 'react-icons/fa';
-
 import './Card.css';
 
 export const FeatureCard = ({
@@ -12,6 +11,7 @@ export const FeatureCard = ({
   views,
   onClick,
   handleWatch,
+  handlePlaylist,
 }) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -41,7 +41,7 @@ export const FeatureCard = ({
           <ul
             className={showDropdown ? 'feature-dropdown' : 'feature-not-active'}
           >
-            <li>
+            <li onClick={(e) => handlePlaylist(e)}>
               {' '}
               <FaIndent />
               Save to Playlist
@@ -85,6 +85,7 @@ export const ExploreCard = ({
       <div className='Explore-card-body'>
         <h2>{videoTitle}</h2>
         <div className='Explore-card-details'>
+          {type === 'playlist' && <p>efwiuwe</p>}
           <p>
             <b>{creator}</b>
           </p>
@@ -106,16 +107,17 @@ export const ExploreCard = ({
         >
           {type === 'playlist' && (
             <li>
-              <FaHistory />
-              Save to Watch later
+              <FaTrashAlt />
+              Remove Playlist
             </li>
           )}
-          <li>
-            {' '}
-            <FaIndent />
-            Save to Playlist
-          </li>
-
+          {type === 'watchlater' && (
+            <li>
+              {' '}
+              <FaIndent />
+              Save to Playlist
+            </li>
+          )}
           {
             <>
               {type === 'like' && (
