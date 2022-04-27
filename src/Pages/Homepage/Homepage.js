@@ -28,6 +28,7 @@ const Homepage = () => {
     playlistDispatch,
   } = usePlaylist();
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [clickedVideo, setClickedVideo] = useState({});
   const encodedToken = localStorage.getItem('encodedToken');
   const navigate = useNavigate();
 
@@ -87,9 +88,10 @@ const Homepage = () => {
     }
   };
 
-  const handlePlaylist = (e) => {
+  const handlePlaylist = (e, video) => {
     e.stopPropagation();
     playlistDispatch({ type: 'TOGGLE_PLAYLIST' });
+    setClickedVideo(video);
   };
 
   return (
@@ -121,9 +123,12 @@ const Homepage = () => {
           {videos.map((vid, i) => {
             return (
               <div key={vid._id}>
-                {togglePlaylist && <Modal video={vid} />}
+                {togglePlaylist && clickedVideo._id === vid._id && (
+                  <Modal key={i} video={vid} />
+                )}
                 <FeatureCard
                   videoThumbnail={vid.videoThumbnail}
+                  video={vid}
                   videoTitle={vid.videoTitle}
                   creatorImage={vid.videoCreatorImage}
                   creator={vid.videoCreator}
@@ -131,7 +136,7 @@ const Homepage = () => {
                   views={vid.videoViews}
                   onClick={() => handleNavigate(vid._id)}
                   handleWatch={(e) => handleWatch(e, vid)}
-                  handlePlaylist={(e) => handlePlaylist(e)}
+                  handlePlaylist={(e) => handlePlaylist(e, vid)}
                 />
               </div>
             );

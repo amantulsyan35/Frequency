@@ -17,8 +17,8 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <UserProvider>
-      <PlaylistProvider>
-        <SideBarProvider>
+      <SideBarProvider>
+        <PlaylistProvider>
           <VideoProvider>
             <CategoryProvider>
               <BrowserRouter>
@@ -26,8 +26,8 @@ ReactDOM.render(
               </BrowserRouter>
             </CategoryProvider>
           </VideoProvider>
-        </SideBarProvider>
-      </PlaylistProvider>
+        </PlaylistProvider>
+      </SideBarProvider>
     </UserProvider>
   </React.StrictMode>,
   document.getElementById('root')

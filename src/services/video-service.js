@@ -114,7 +114,20 @@ export const addToPlaylist = async (playlistDet) => {
   }
 };
 
-export const getPlaylistVideo = async (id) => {
+export const deletePlaylist = async (id) => {
+  try {
+    const response = await axios({
+      method: 'delete',
+      url: `/api/user/playlists/${id}`,
+      headers: { authorization: encodedToken },
+    });
+    return response && response.data.playlists;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getPlaylist = async (id) => {
   try {
     const response = await axios({
       method: 'get',
@@ -138,6 +151,19 @@ export const addVideoToPlaylist = async (id, video) => {
       },
     });
     return response && response.data.playlist.videos;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteVideoFromPlaylist = async (playlistId, videoId) => {
+  try {
+    const response = await axios({
+      method: 'delete',
+      url: `/api/user/playlists/${playlistId}/${videoId}`,
+      headers: { authorization: encodedToken },
+    });
+    return response && response.data.playlist;
   } catch (error) {
     console.log(error);
   }

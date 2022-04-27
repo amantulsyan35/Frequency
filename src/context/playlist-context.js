@@ -9,6 +9,8 @@ const PlaylistProvider = ({ children }) => {
         return { ...state, togglePlaylist: !state.togglePlaylist };
       case 'SET_PLAYLIST':
         return { ...state, playlists: action.payload };
+      case 'SET_INDIVIDUAL_PLAYLIST':
+        return { ...state, individualPlaylist: action.payload };
       default:
         return state;
     }
@@ -17,6 +19,7 @@ const PlaylistProvider = ({ children }) => {
   const [playlistState, playlistDispatch] = useReducer(reducerFunc, {
     togglePlaylist: false,
     playlists: [],
+    individualPlaylist: {},
   });
 
   return (

@@ -24,10 +24,9 @@ const Modal = ({ video }) => {
     }));
   };
 
-  const handlePlaylist = async () => {
+  const handlePlaylist = async (e) => {
     try {
       const playlists = await addToPlaylist(playlistDetails);
-      console.log(playlists);
       playlistDispatch({
         type: 'SET_PLAYLIST',
         payload: playlists,
