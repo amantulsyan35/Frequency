@@ -35,7 +35,7 @@ export const SidebarData = [
   {
     title: 'History',
     icon: <FaHistory />,
-    link: '',
+    link: '/user/history',
     cName: 'History-row',
   },
   {

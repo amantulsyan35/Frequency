@@ -15,6 +15,7 @@ import { useSideBar } from '../../context/sidebar-context';
 
 import './Navbar.css';
 import '../../styles/base.css';
+import { Fragment } from 'react';
 
 const NavSearch = () => {
   return (
@@ -78,15 +79,15 @@ const Navbar = () => {
             size={18}
           />
         )}
+
         <Link to='/'>[ &#128214;, &#9961;]</Link>
       </div>
 
       <NavSearch />
       <div className='nav-links-container'>
         <ul className='nav-links'>
-          {/*<NavList icon='video' to='user/checkout' />*/}
+          <NavList icon='video' to='#' />
 
-          <NavList icon='notification' to='user/wishlist' />
           {encodedToken ? (
             <NavList icon='signout' onClick={handleLogout} />
           ) : (

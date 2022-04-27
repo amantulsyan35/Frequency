@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import {
   addToLikedVideos,
   deleteLikedVideo,
+  addVideoToHistory,
 } from '../../services/video-service';
 import { categoryVideoFilter } from '../../utils/videoUtils';
 import './VideoPage.css';
@@ -19,6 +20,7 @@ const VideoPage = () => {
     videoDispatch,
   } = useVideo();
   const [video, setVideo] = useState({});
+  const [playedSeconds, setPlayedSeconds] = useState(0);
   const [liked, setLiked] = useState(false);
   const params = useParams();
 
@@ -27,6 +29,7 @@ const VideoPage = () => {
       async function fetchVideo() {
         const response = await axios.get(`/api/video/${params.videoId}`);
         setVideo(response.data.video);
+        await addVideoToHistory(response.data.video);
 
         const response2 = await axios.get('/api/videos');
         let filteredVideos = categoryVideoFilter(
@@ -70,10 +73,14 @@ const VideoPage = () => {
     }
   };
 
+  const handleProgress = (seconds) => {
+    setPlayedSeconds(seconds);
+  };
+
   return (
     <main className='videopage-container'>
       <section className='video-container'>
-        <VideoPlayer url={video.videoURL} />
+        <VideoPlayer url={video.videoURL} handleProgress={handleProgress} />
         <div className='video-details-container'>
           <h2>{video.videoTitle}</h2>
           <div className='video-details'>

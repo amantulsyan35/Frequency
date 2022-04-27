@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { FaHistory, FaIndent, FaEllipsisV, FaTrashAlt } from 'react-icons/fa';
-import { Modal } from '../../components';
 import './Card.css';
 
 export const FeatureCard = ({
@@ -13,8 +12,6 @@ export const FeatureCard = ({
   onClick,
   handleWatch,
   handlePlaylist,
-  togglePlaylist,
-  video,
 }) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -30,7 +27,13 @@ export const FeatureCard = ({
       </div>
       <div className='Featured-card-body'>
         <div className='Featured-card-avatar'>
-          <img src={creatorImage} alt={creator} />
+          <img
+            src={
+              creatorImage ??
+              ' `https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png`'
+            }
+            alt={creator}
+          />
         </div>
         <div className='Featured-card-details'>
           <h4>{videoTitle}</h4>
@@ -116,12 +119,13 @@ export const ExploreCard = ({
               Remove Playlist
             </li>
           )}
-          {type === 'playlistVideo' && (
-            <li onClick={(e) => handleRemove(e)}>
-              <FaTrashAlt />
-              Remove Video
-            </li>
-          )}
+          {type === 'playlistVideo' ||
+            (type === 'history' && (
+              <li onClick={(e) => handleRemove(e)}>
+                <FaTrashAlt />
+                Remove Video
+              </li>
+            ))}
           {type === 'watchlater' && (
             <li>
               {' '}

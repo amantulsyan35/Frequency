@@ -13,6 +13,8 @@ const VideoProvider = ({ children }) => {
         return { ...state, likedVideos: action.payload };
       case 'SET_WATCH_LATER_VIDEOS':
         return { ...state, watchLater: action.payload };
+      case 'SET_HISTORY_VIDEOS':
+        return { ...state, historyArray: action.payload };
       default:
         return state;
     }
@@ -23,6 +25,7 @@ const VideoProvider = ({ children }) => {
     categoryVideos: [],
     likedVideos: [],
     watchLater: [],
+    historyArray: [],
   });
 
   return (
