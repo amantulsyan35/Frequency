@@ -54,7 +54,10 @@ const Like = () => {
     <main className='like-container'>
       <section className='like-video-container'>
         {likedVideos.length === 0 ? (
-          <img src='' alt='' />
+          <img
+            src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.giphy.com%2Fmedia%2FEbGzxNByyIcve%2Fsource.gif&f=1&nofb=1'
+            alt=''
+          />
         ) : (
           likedVideos &&
           likedVideos.map((vid) => {

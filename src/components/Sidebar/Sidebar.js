@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import './Sidebar.css';
-import '../../styles/base.css';
 import { SidebarData } from './SiddebarData';
 
 import { Link } from 'react-router-dom';

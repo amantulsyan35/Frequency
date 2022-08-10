@@ -119,13 +119,18 @@ export const ExploreCard = ({
               Remove Playlist
             </li>
           )}
-          {type === 'playlistVideo' ||
-            (type === 'history' && (
-              <li onClick={(e) => handleRemove(e)}>
-                <FaTrashAlt />
-                Remove Video
-              </li>
-            ))}
+          {type === 'playlistVideo' && (
+            <li onClick={(e) => handleRemove(e)}>
+              <FaTrashAlt />
+              Remove Video
+            </li>
+          )}
+          {type === 'history' && (
+            <li onClick={(e) => handleRemove(e)}>
+              <FaTrashAlt />
+              Remove Video
+            </li>
+          )}
           {type === 'watchlater' && (
             <li>
               {' '}

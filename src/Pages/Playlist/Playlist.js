@@ -49,7 +49,10 @@ const Playlist = () => {
     <main className='playlist-container'>
       <section className='playlist-video-container'>
         {playlists.length === 0 ? (
-          <img src='' alt='' />
+          <img
+            src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.giphy.com%2Fmedia%2FEbGzxNByyIcve%2Fsource.gif&f=1&nofb=1'
+            alt=''
+          />
         ) : (
           playlists &&
           playlists.map((playlist) => {

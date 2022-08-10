@@ -80,7 +80,10 @@ const History = () => {
         )}
 
         {historyArray.length === 0 ? (
-          <img src='' alt='' />
+          <img
+            src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.giphy.com%2Fmedia%2FEbGzxNByyIcve%2Fsource.gif&f=1&nofb=1'
+            alt=''
+          />
         ) : (
           historyArray &&
           historyArray.map((vid) => {

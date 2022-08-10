@@ -14,7 +14,6 @@ import {
 import { useSideBar } from '../../context/sidebar-context';
 
 import './Navbar.css';
-import '../../styles/base.css';
 import { Fragment } from 'react';
 
 const NavSearch = () => {
