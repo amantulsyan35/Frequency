@@ -90,8 +90,12 @@ const Homepage = () => {
 
   const handlePlaylist = (e, video) => {
     e.stopPropagation();
-    playlistDispatch({ type: 'TOGGLE_PLAYLIST' });
-    setClickedVideo(video);
+    if (encodedToken) {
+      playlistDispatch({ type: 'TOGGLE_PLAYLIST' });
+      setClickedVideo(video);
+    } else {
+      toast.error('You need to be logged in first!');
+    }
   };
 
   return (

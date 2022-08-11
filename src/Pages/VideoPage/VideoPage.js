@@ -11,7 +11,6 @@ import {
   deleteLikedVideo,
   addVideoToHistory,
 } from '../../services/video-service';
-import { categoryVideoFilter } from '../../utils/videoUtils';
 import './VideoPage.css';
 
 const VideoPage = () => {
@@ -20,6 +19,7 @@ const VideoPage = () => {
     videoState: { categoryVideos },
     videoDispatch,
   } = useVideo();
+  const encodedToken = window.localStorage.getItem('encodedToken');
   const [video, setVideo] = useState({});
   const [playedSeconds, setPlayedSeconds] = useState(0);
   const [liked, setLiked] = useState(false);
@@ -55,9 +55,14 @@ const VideoPage = () => {
 
   const handleLike = async () => {
     try {
-      setLiked((state) => !state);
-      await addToLikedVideos(video);
-      toast.success('Added to Liked videos');
+      if (!encodedToken) {
+        toast.error('You need to login first');
+        navigate('/login');
+      } else {
+        setLiked((state) => !state);
+        await addToLikedVideos(video);
+        toast.success('Added to Liked videos');
+      }
     } catch (error) {
       toast.error(error.message);
     }
