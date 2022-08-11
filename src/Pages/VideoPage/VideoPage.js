@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { useParams, useNavigate } from 'react-router-dom';
 import { VideoPlayer, RecommendationCard } from '../../components';
 import { VideoIcon, VideoStats } from './videoComp';
@@ -32,21 +33,21 @@ const VideoPage = () => {
         await addVideoToHistory(response.data.video);
 
         const response2 = await axios.get('/api/videos');
-        let filteredVideos = categoryVideoFilter(
-          response2.data.videos,
-          video.category
-        );
+        // let filteredVideos = categoryVideoFilter(
+        //   response2.data.videos,
+        //   video.category
+        // );
 
         videoDispatch({
           type: 'SET_CATEGORY_VIDEOS',
-          payload: filteredVideos,
+          payload: response2.data.videos,
         });
       }
       fetchVideo();
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [params]);
 
   const handleNavigate = (id) => {
     navigate(`/video/${id}`);
@@ -96,8 +97,8 @@ const VideoPage = () => {
                 handleLike={liked ? handleRemoveLike : handleLike}
                 like={liked}
               />
-              <VideoIcon title='SHARE' iconName='share' />
-              <VideoIcon title='SAVE' iconName='save' />
+              {/*<VideoIcon title='SHARE' iconName='share' />*/}
+              {/*<VideoIcon title='SAVE' iconName='save' />*/}
             </div>
           </div>
         </div>
@@ -108,24 +109,27 @@ const VideoPage = () => {
           <div className='video-creator-details'>
             <h4>{video.videoCreator}</h4>
           </div>
-          <div className='video-creator-button'>
+          {/*<div className='video-creator-button'>
             <button>Discuss</button>
-          </div>
+  </div>*/}
         </div>
       </section>
       <section className='video-rec-container'>
-        {categoryVideos.map((vid) => {
+        {categoryVideos.slice(0, 3).map((vid) => {
           return (
-            <RecommendationCard
-              key={vid._id}
-              videoThumbnail={vid.videoThumbnail}
-              videoTitle={vid.videoTitle}
-              creatorImage={vid.videoCreatorImage}
-              creator={vid.videoCreator}
-              published={vid.videoPublished}
-              views={vid.videoViews}
-              onClick={() => handleNavigate(vid._id)}
-            />
+            <>
+              <Link to={`/video/${vid._id}`}>
+                <RecommendationCard
+                  key={vid._id}
+                  videoThumbnail={vid.videoThumbnail}
+                  videoTitle={vid.videoTitle}
+                  creatorImage={vid.videoCreatorImage}
+                  creator={vid.videoCreator}
+                  published={vid.videoPublished}
+                  views={vid.videoViews}
+                />
+              </Link>
+            </>
           );
         })}
       </section>

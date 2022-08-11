@@ -82,10 +82,10 @@ const Navbar = () => {
         <Link to='/'>[ &#128214;, &#9961;]</Link>
       </div>
 
-      <NavSearch />
+      {/*<NavSearch />*/}
       <div className='nav-links-container'>
         <ul className='nav-links'>
-          <NavList icon='video' to='#' />
+          {/*<NavList icon='video' to='#' />*/}
 
           {encodedToken ? (
             <NavList icon='signout' onClick={handleLogout} />

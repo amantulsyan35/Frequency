@@ -1,5 +1,11 @@
 import { useState } from 'react';
-import { FaHistory, FaIndent, FaEllipsisV, FaTrashAlt } from 'react-icons/fa';
+import {
+  FaHistory,
+  FaIndent,
+  FaEllipsisV,
+  FaTrashAlt,
+  FaGratipay,
+} from 'react-icons/fa';
 import './Card.css';
 
 export const FeatureCard = ({
@@ -113,6 +119,18 @@ export const ExploreCard = ({
         <ul
           className={showDropdown ? 'explore-dropdown' : 'explore-not-active'}
         >
+          {type === 'explore' && (
+            <li
+              onClick={(e) =>
+                alert(
+                  'You have unlocked an easter egg, reach out to me and I will show you what I am working on'
+                )
+              }
+            >
+              <FaGratipay />
+              Easter Egg
+            </li>
+          )}
           {type === 'playlist' && (
             <li onClick={(e) => handleRemove(e)}>
               <FaTrashAlt />
@@ -185,9 +203,9 @@ export const RecommendationCard = ({
             <p>{views} views</p> <p>{published}</p>
           </span>
         </div>
-        <div className='Featured-card-icon'>
+        {/*<div className='Featured-card-icon'>
           <FaHistory size={22} />
-        </div>
+  </div>*/}
       </div>
     </div>
   );

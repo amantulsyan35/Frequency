@@ -89,6 +89,7 @@ const Explore = () => {
               published={vid.videoPublished}
               views={vid.videoViews}
               desc={vid.description}
+              type='explore'
               onClick={() => handleNavigate(vid._id)}
             />
           );

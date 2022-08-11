@@ -57,7 +57,10 @@ const WatchLater = () => {
     <main className='watch-container'>
       <section className='watch-video-container'>
         {watchLater.length === 0 ? (
-          <img src='' alt='' />
+          <img
+            src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.giphy.com%2Fmedia%2FEbGzxNByyIcve%2Fsource.gif&f=1&nofb=1'
+            alt=''
+          />
         ) : (
           watchLater &&
           watchLater.map((vid) => {
