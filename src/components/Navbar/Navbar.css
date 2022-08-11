@@ -1,0 +1,28 @@
+.nav-container {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: white;
+}
+
+.nav-logout {
+  display: flex;
+  padding: 0.4rem;
+  color: #2d3748;
+  align-items: center;
+  text-decoration: none;
+  justify-content: center;
+  border: 1px solid #2d3748;
+  background-color: transparent;
+}
+
+.nav-logout:hover {
+  border: 1px solid var(--info-icon-color);
+  color: var(--info-icon-color);
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

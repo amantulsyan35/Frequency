@@ -1,0 +1,69 @@
+.playlist-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 100vh;
+}
+
+.playlist-modal-container {
+  /* border: 1px solid rgb(0, 0, 0, 0.1); */
+  width: 17rem;
+  background-color: white;
+  padding: 1rem;
+  position: fixed;
+  margin: auto;
+  z-index: 3;
+}
+
+.playlist-modal-container h3 {
+  text-align: center;
+  text-transform: uppercase;
+  color: rgb(0, 0, 0, 0.6);
+  letter-spacing: 3px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.playlist-list {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.playlist-list li {
+  margin-top: 0.5rem;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.playlist-input {
+  margin-bottom: 0.5rem;
+  display: block;
+  padding: 0.3rem;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgb(0, 0, 0, 0.6);
+  outline: none;
+}
+
+.playlist-button {
+  padding: 0.5rem;
+  width: 100%;
+  border: 1px solid rgb(0, 0, 0, 0.6);
+  background-color: transparent;
+}
+
+.playlist-button:hover {
+  border: 1px solid var(--info-icon-color);
+}
